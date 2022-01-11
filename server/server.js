@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config(); //ตั้งค่าระบบ
 
-//const appSystem = require("./route/appSystem");
+const app_system = require("./route/app_system");
 const employees = require("./route/employees");
 //const userlogs = require("./route/userlogs");
 
@@ -23,7 +23,7 @@ app.use(cors())
 app.use(morgan("dev"))
 
 //route
-//app.use('/api/appSystem',appSystem)
+app.use('/api/app_system',app_system)
 app.use('/api/employees',employees)
 // app.use('/api/userlogs',userlogs)
 

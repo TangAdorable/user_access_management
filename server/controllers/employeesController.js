@@ -57,6 +57,7 @@ exports.updateemp=(req,res)=>{
     const {UserID} = req.params
     const {FirstName,LastName,JobTitle,Department}=req.body //ส่งข้อมูลมา
     
+    //ตรวจสอบ request by case
     switch(true){
         case !FirstName:
             return res.status(400).json({error:"ระบุชื่อพนักงาน"})

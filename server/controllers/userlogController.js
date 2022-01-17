@@ -10,9 +10,6 @@ exports.addlogs=(req,res)=>{
             return res.status(400).json({error:"choose access"})
         }
 
-    if (App_status === ""){
-        App_status = "Test";
-    }
 
     userlogs.create({UserID,App_name,Access,App_status,TicketID,Note},(err,log)=>{
         if(err){console.log(err) }

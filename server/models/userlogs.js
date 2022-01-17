@@ -3,20 +3,20 @@ const mongoose = require("mongoose");
 const userlogs = mongoose.Schema(
   {
     UserID: {
-        type: String,
-        require: true,
-      },
+      type: String,
+      require: true,
+    },
     App_name: {
       type: String,
       require: true,
     },
     Access: [],
     App_status: {
-        type:String,
-        default:"Enable"
+      type: Boolean,
+      default: true,
     },
     TicketID: String,
-    Note:String
+    Note: String,
   },
   { timestamps: true }
 );

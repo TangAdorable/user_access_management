@@ -1,12 +1,22 @@
-import React from "react";
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxOpen, faCartArrowDown, faChartPie, faChevronDown, faClipboard, faCommentDots, faFileAlt, faPlus, faRocket, faStore } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBoxOpen,
+  faCartArrowDown,
+  faChartPie,
+  faChevronDown,
+  faClipboard,
+  faCommentDots,
+  faFileAlt,
+  faPlus,
+  faRocket,
+  faStore,
+} from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Button, Dropdown } from '@themesberg/react-bootstrap';
-import { ChoosePhotoWidget, ProfileCardWidget } from "../components/Widgets";
-import { GeneralInfoForm } from "../components/Forms";
+import { ChoosePhotoWidget, ProfileCardWidget } from '../components/Widgets';
+import { GeneralInfoForm } from '../components/Forms';
 
-import Profile3 from "../assets/img/team/profile-picture-3.jpg";
-
+import Profile3 from '../assets/img/team/profile-picture-3.jpg';
 
 export default () => {
   return (
@@ -32,7 +42,7 @@ export default () => {
 
             <Dropdown.Item>
               <FontAwesomeIcon icon={faRocket} className="text-danger me-2" /> Subscription Plan
-              </Dropdown.Item>
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
@@ -40,7 +50,9 @@ export default () => {
           <Dropdown>
             <Dropdown.Toggle as={Button} variant="primary">
               <FontAwesomeIcon icon={faClipboard} className="me-2" /> Reports
-              <span className="icon icon-small ms-1"><FontAwesomeIcon icon={faChevronDown} /></span>
+              <span className="icon icon-small ms-1">
+                <FontAwesomeIcon icon={faChevronDown} />
+              </span>
             </Dropdown.Toggle>
             <Dropdown.Menu className="dashboard-dropdown dropdown-menu-left mt-1">
               <Dropdown.Item>
@@ -77,10 +89,7 @@ export default () => {
               <ProfileCardWidget />
             </Col>
             <Col xs={12}>
-              <ChoosePhotoWidget
-                title="Select profile photo"
-                photo={Profile3}
-              />
+              <ChoosePhotoWidget title="Select profile photo" photo={Profile3} />
             </Col>
           </Row>
         </Col>

@@ -1,12 +1,14 @@
 
 export const Routes = {
     // pages
-    Presentation: { path: "/" },
+    Presentation: { path: "/test" },
     DashboardOverview: { path: "/dashboard/overview" },
     Transactions: { path: "/transactions" },
     AppSystem: { path: "/admin/appsystem" },
     Settings: { path: "/settings" },
     Upgrade: { path: "/upgrade" },
+    Users: { path: "/users" },
+    ManageUsers: {path: "/"},
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },

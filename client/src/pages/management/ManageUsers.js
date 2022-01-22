@@ -1,31 +1,41 @@
-import React , {useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Breadcrumb, Button, ButtonGroup, Row, Col, InputGroup, Form, Image, Dropdown, Card, Table } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faPlus, faCog, faCheck, faSearch, faSlidersH } from '@fortawesome/free-solid-svg-icons';
-//import users from "../../data/users";
 import axios from "axios"
+import CustomPagination from "./PaginationManageUsers";
+
 
 
 export default () => {
 
-  const [allemp,setAllemp] = useState([])
+  const [allemp, setAllemp] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
 
-  const fetchData=()=>{
+  const fetchData = () => {
     axios
-    .get(`${process.env.REACT_APP_API_Employees}/allemp`)
-    .then(Response=>{
-      setAllemp(Response.data)
-    })
-    .catch(err=>alert(err));
+      .get(`${process.env.REACT_APP_API_Employees}/allemp`)
+      .then(Response => {
+        setAllemp(Response.data)
+      })
+      .catch(err => alert(err));
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchData()
-  },[])
+  }, [])
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  const currentPosts = allemp.slice(indexOfFirstPost, indexOfLastPost);
+  const paginate = currentPosts => setCurrentPage(currentPosts)
+
 
 
   return (
-    <div className="container-fluid p-3 bg-danger">
+    <div className="container-fluid p-3 ">
       <h4>Users List</h4>
       <p className="mb-0">Your web user access management</p>
 
@@ -34,10 +44,10 @@ export default () => {
           <FontAwesomeIcon icon={faPlus} className="me-2" /> Add New User
         </Button>
         <ButtonGroup className="ms-3">
-          <Button variant="outline-primary" size="sm">
+          <Button variant="outline-info" size="sm">
             Share
           </Button>
-          <Button variant="outline-primary" size="sm">
+          <Button variant="outline-info" size="sm">
             Export
           </Button>
         </ButtonGroup>
@@ -77,8 +87,8 @@ export default () => {
               </tr>
             </thead>
             <tbody>
-              {allemp.map(emp => (
-                <tr key={emp._id}>
+              {currentPosts.map((emp, index) => (
+                <tr key={index}>
                   <td>
                     <Card.Link className="d-flex align-items-center">
                       <div className="d-block">
@@ -94,8 +104,8 @@ export default () => {
                 </tr>
               ))}
             </tbody>
-
           </Table>
+          <CustomPagination postsPerPage={postsPerPage} totalPosts={allemp.length} paginate={paginate} />
         </Card.Body>
       </Card>
     </div>

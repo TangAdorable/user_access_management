@@ -30,7 +30,7 @@ exports.create=(req,res)=>{
 
     //แสดงข้อมูล
 exports.getallemp=(req,res)=>{
-    employees.find({}).exec((err,allemp)=>{
+    employees.find({}).sort({createdAt: "desc"}).exec((err,allemp)=>{
         res.json(allemp)
     })
 }

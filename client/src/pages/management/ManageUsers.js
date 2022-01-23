@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Breadcrumb, Button, ButtonGroup, Row, Col, InputGroup, Form, Image, Dropdown, Card, Table } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPlus, faCog, faCheck, faSearch, faSlidersH } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlus, faCog, faCheck, faSearch, faSlidersH, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios"
 import CustomPagination from "./PaginationManageUsers";
 
@@ -11,7 +11,7 @@ export default () => {
 
   const [allemp, setAllemp] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(2);
 
   const fetchData = () => {
     axios
@@ -28,11 +28,12 @@ export default () => {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-
   const currentPosts = allemp.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = currentPosts => setCurrentPage(currentPosts)
 
-
+  // console.log(`Test1 ${indexOfLastPost} `)
+  // console.log(`Test2 ${currentPosts} `)
+  // console.log(`Test3 ${paginate} `)
 
   return (
     <div className="container-fluid p-3 ">
@@ -87,6 +88,8 @@ export default () => {
               </tr>
             </thead>
             <tbody>
+              {/* const allemp1 = allemp.sort((a, b) => {return a-b})
+              console.log(allemp1) */}
               {currentPosts.map((emp, index) => (
                 <tr key={index}>
                   <td>

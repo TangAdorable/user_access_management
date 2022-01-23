@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Card, Pagination } from '@themesberg/react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft, faAngleDoubleRight, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 
 const CustomPagination = (props) => {
     const [activeItem, setActiveItem] = React.useState(1);
@@ -17,11 +17,20 @@ const CustomPagination = (props) => {
     const onPrevItem = () => {
         const prevActiveItem = activeItem === 1 ? activeItem : activeItem - 1;
         setActiveItem(prevActiveItem);
+        paginate(prevActiveItem);
     };
 
     const onNextItem = (totalPosts) => {
         const nextActiveItem = activeItem === totalPosts ? activeItem : activeItem + 1;
-        setActiveItem(nextActiveItem);
+        if (nextActiveItem <= Math.ceil(totalPosts / postsPerPage)){
+            setActiveItem(nextActiveItem);
+            paginate(nextActiveItem);
+            // console.log(`test 1 ${activeItem}`)
+            // console.log(`test 2 ${totalPosts}`)
+            // console.log(`test 3 ${nextActiveItem}`)
+            // console.log(Math.ceil(totalPosts / postsPerPage))
+        }
+
     };
 
     const items = [];
@@ -56,12 +65,8 @@ const CustomPagination = (props) => {
             </Pagination.Prev>
 
             {items}
-
-            <Pagination.Next
-                onClick={() => {
-                    onNextItem(totalPosts);
-                }}
-            >
+            
+            <Pagination.Next onClick={() => {onNextItem(totalPosts);}}>
                 {withIcons ? <FontAwesomeIcon icon={faAngleDoubleRight} /> : 'Next'}
             </Pagination.Next>
         </Pagination>

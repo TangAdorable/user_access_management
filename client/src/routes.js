@@ -9,6 +9,7 @@ export const Routes = {
     Upgrade: { path: "/upgrade" },
     Users: { path: "/users" },
     ManageUsers: {path: "/"},
+    singleUserID:{path: "/employees/emp/:UserID"},
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },

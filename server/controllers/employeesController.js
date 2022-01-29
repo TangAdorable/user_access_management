@@ -28,7 +28,7 @@ exports.create=(req,res)=>{
     })
 }
 
-    //แสดงข้อมูล
+    //แสดงข้อมูล / เรียงจากล่าสุดไปเก่าสุดด้วย createdAt .sort({createdAt: "desc"})
 exports.getallemp=(req,res)=>{
     employees.find({}).sort({createdAt: "desc"}).exec((err,allemp)=>{
         res.json(allemp)

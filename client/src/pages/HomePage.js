@@ -5,6 +5,7 @@ import { Routes } from '../routes';
 // pages
 import Users from './Users';
 import ManageUsers from './management/ManageUsers';
+import singleUserID from './management/singleUserID';
 import Presentation from './Presentation';
 import Upgrade from './Upgrade';
 import DashboardOverview from './dashboard/DashboardOverview';
@@ -130,6 +131,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
     <RouteWithSidebar exact path={Routes.ManageUsers.path} component={ManageUsers} />
+    <RouteWithSidebar exact path={Routes.singleUserID.path} component={singleUserID} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
 
     {/* components */}
@@ -158,7 +160,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DocsFolderStructure.path} component={DocsFolderStructure} />
     <RouteWithSidebar exact path={Routes.DocsBuild.path} component={DocsBuild} />
     <RouteWithSidebar exact path={Routes.DocsChangelog.path} component={DocsChangelog} />
-
-    <Redirect to={Routes.NotFound.path} />
+    
+    <Redirect to={Routes.NotFound.path} /> 
   </Switch>
 );

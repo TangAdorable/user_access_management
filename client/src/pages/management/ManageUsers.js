@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faPlus, faCog, faCheck, faSearch, faSlidersH, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios"
 import CustomPagination from "./PaginationManageUsers";
+import { Link } from 'react-router-dom';
 
 
 
@@ -93,7 +94,7 @@ export default () => {
               {currentPosts.map((emp, index) => (
                 <tr key={index}>
                   <td>
-                    <Card.Link className="d-flex align-items-center">
+                    <Card.Link as={Link} to={`/employees/emp/${emp.UserID}`}  className="d-flex align-items-center">
                       <div className="d-block">
                         <span className="fw-bold">{emp.UserID}</span>
                       </div>

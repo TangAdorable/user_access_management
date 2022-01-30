@@ -1,7 +1,7 @@
 import React from 'react';
-import { Col, Card, Pagination } from '@themesberg/react-bootstrap';
+import { Pagination } from '@themesberg/react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleLeft, faAngleDoubleRight, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
 const CustomPagination = (props) => {
     const [activeItem, setActiveItem] = React.useState(1);

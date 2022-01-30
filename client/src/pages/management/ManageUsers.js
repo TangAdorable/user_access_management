@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Breadcrumb, Button, ButtonGroup, Row, Col, InputGroup, Form, Image, Dropdown, Card, Table } from "@themesberg/react-bootstrap";
+import { Button, ButtonGroup, Row, Col, InputGroup, Form , Card, Table } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPlus, faCog, faCheck, faSearch, faSlidersH, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios"
 import CustomPagination from "./PaginationManageUsers";
 import { Link } from 'react-router-dom';
@@ -81,11 +81,11 @@ export default () => {
             <thead>
               {/* {JSON.stringify(allemp)} */}
               <tr className="text-center" >
-                <th className="border-bottom">UserID</th>
-                <th className="border-bottom">FirstName</th>
-                <th className="border-bottom">LastName</th>
-                <th className="border-bottom">JobTitle</th>
-                <th className="border-bottom">Department</th>
+                <th className="col-2 border-bottom ">UserID</th>
+                <th className="col-2 border-bottom ">FirstName</th>
+                <th className="col-2 border-bottom">LastName</th>
+                <th className="col-3 border-bottom">JobTitle</th>
+                <th className="col-3 border-bottom">Department</th>
               </tr>
             </thead>
             <tbody>
@@ -93,17 +93,17 @@ export default () => {
               console.log(allemp1) */}
               {currentPosts.map((emp, index) => (
                 <tr key={index}>
-                  <td>
+                  <td >
                     <Card.Link as={Link} to={`/employees/emp/${emp.UserID}`}  className="d-flex align-items-center">
                       <div className="d-block">
                         <span className="fw-bold">{emp.UserID}</span>
                       </div>
                     </Card.Link>
                   </td>
-                  <td><span className="fw-normal"><div className="small text-gray">{emp.FirstName}</div></span></td>
-                  <td><span className="fw-normal"><div className="small text-gray">{emp.LastName}</div></span></td>
-                  <td><span className="fw-normal"><div className="small text-gray">{emp.JobTitle}</div></span></td>
-                  <td><span className="fw-normal"><div className="small text-gray">{emp.Department}</div></span></td>
+                  <td><div className=" small text-gray fw-normal">{emp.FirstName}</div></td>
+                  <td><div className="small text-gray fw-normal">{emp.LastName}</div></td>
+                  <td><div className="small text-gray fw-normal">{emp.JobTitle}</div></td>
+                  <td><div className="small text-gray">{emp.Department}</div></td>
                   {/* <td><span className="fw-normal">{u.dateCreated}</span></td> */}
                 </tr>
               ))}

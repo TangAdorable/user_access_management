@@ -6,6 +6,7 @@ import { Routes } from '../routes';
 import Users from './Users';
 import ManageUsers from './management/ManageUsers';
 import singleUserID from './management/singleUserID';
+import EditLogData from './management/EditLogData';
 import Presentation from './Presentation';
 import Upgrade from './Upgrade';
 import DashboardOverview from './dashboard/DashboardOverview';
@@ -132,6 +133,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
     <RouteWithSidebar exact path={Routes.ManageUsers.path} component={ManageUsers} />
     <RouteWithSidebar exact path={Routes.singleUserID.path} component={singleUserID} />
+    <RouteWithSidebar exact path={Routes.EditLogData.path} component={EditLogData} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
 
     {/* components */}

@@ -10,6 +10,7 @@ export const Routes = {
     Users: { path: "/users" },
     ManageUsers: {path: "/"},
     singleUserID:{path: "/employees/emp/:UserID"},
+    EditLogData:{path: "/userlogs/updatelog"}, ///:_id
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },

@@ -6,6 +6,7 @@ router
 .post('/addlogs',userlogs.addlogs)
 .get('/alllogs',userlogs.alllogs)
 .get('/userlog/:UserID',userlogs.userlog)
+.get('/singlelog/:_id',userlogs.singlelog)
 .put('/updatelog/:_id',userlogs.updatelog)
 
 

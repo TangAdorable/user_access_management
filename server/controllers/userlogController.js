@@ -31,6 +31,13 @@ exports.userlog=(req,res)=>{
     })
 }
 
+exports.singlelog=(req,res)=>{
+    const {_id} = req.params
+    userlogs.findById({_id}).exec((err,user)=>{
+        res.json(user)
+    })
+}
+
 exports.updatelog=(req,res)=>{
     const {_id} = req.params
     const {App_status,TicketID,Note}=req.body

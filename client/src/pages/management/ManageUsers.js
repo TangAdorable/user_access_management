@@ -55,22 +55,22 @@ export default () => {
         </ButtonGroup>
       </div>
 
-      <div className="table-settings mb-4">
+      <div className="table-settings mb-2">
         <Row className="justify-content-between align-items-center">
-          <Col xs={9} lg={4} className="d-flex">
-            <InputGroup className="me-2 me-lg-3">
+          <Col xs={9} lg={2} className="d-flex">
+            <InputGroup >
               <InputGroup.Text>
                 <FontAwesomeIcon icon={faSearch} />
               </InputGroup.Text>
               <Form.Control type="text" placeholder="Search" />
             </InputGroup>
-            <Form.Select className="w-25">
+            {/* <Form.Select className="w-25">
               <option defaultChecked>All</option>
               <option value="1">Active</option>
               <option value="2">Inactive</option>
               <option value="3">Pending</option>
               <option value="3">Canceled</option>
-            </Form.Select>
+            </Form.Select> */}
           </Col>
         </Row>
       </div>

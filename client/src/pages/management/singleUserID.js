@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"
-import { Button, Card, Table, Modal } from "@themesberg/react-bootstrap";
+import { Button, Card, Table } from "@themesberg/react-bootstrap";
 import { Link } from 'react-router-dom';
 import UserProfile from "./UserProfile"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+
 
 
 
@@ -10,12 +15,12 @@ export default (props) => {
     const [empUser, setempUser] = useState('')
     const [loguser, setloguser] = useState([])
 
-    const [editlog, seteditlog] = useState({
-        App_status: "",
-        TicketID: "",
-        Note: ""
-    })
-    const { App_status, TicketID, Note } = editlog
+    // const [editlog, seteditlog] = useState({
+    //     App_status: "",
+    //     TicketID: "",
+    //     Note: ""
+    // })
+    // const { App_status, TicketID, Note } = editlog
 
     // const [showDefault, setShowDefault] = useState(false);
     // const handleClose = () => setShowDefault(false);
@@ -70,6 +75,11 @@ export default (props) => {
             </div>
             <hr /> */}
             <UserProfile {...empUser} />
+
+            <Button variant="primary" size="sm" className="m-1 mb-2" as={Link} to={`/userlogs/AddAppLog/${empUser.UserID}`}>
+                <FontAwesomeIcon icon={faPlus} /> Add Application Log
+            </Button>
+
             <Card border="light" className="table-wrapper table-responsive shadow-sm">
                 <Card.Body>
                     <Table hover className="user-table align-items-center">
@@ -101,7 +111,7 @@ export default (props) => {
                                     <td><div className="small text-gray fw-normal">{log.TicketID}</div></td>
                                     <td><div className="small text-gray">{log.Note}</div></td>
                                     {/* <td><Container triggerText={triggerText} onSubmit={onSubmit} /></td> */}
-                                    <td ><Button variant="warning" size="sm" className="me-1" as={Link} to={`/userlogs/singlelog/${log._id}/${log.UserID}` } >Edit</Button></td>
+                                    <td ><Button variant="warning" size="sm" className="me-1" as={Link} to={`/userlogs/singlelog/${log._id}/${log.UserID}`} >Edit</Button></td>
 
 
                                     {/* <Modal as={Modal.Dialog} centered show={showDefault} size="lg" onHide={handleClose}>

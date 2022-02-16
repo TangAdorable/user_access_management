@@ -6,43 +6,57 @@ import Swal from "sweetalert2";
 
 export default (props) => {
 
-    const [empUser, setempUser] = useState({
-        UserID: '',
+    const [listApp, setListApp] = useState([])
+
+    const [empUser, setempUser] = useState('');
+    const [addLog, setAddLog] = useState({
+        UserID : '',
         App_name: '',
         Access: '',
         App_status: false,
         TicketID: '',
         Note: '',
     })
-    const { UserID, App_name, Access, App_status, TicketID, Note } = empUser;
+    const {UserID,App_name,Access,App_status,TicketID,Note } = addLog;
 
     const empSingleUser = () => {
         axios
             .get(`${process.env.REACT_APP_API_Employees}/emp/${props.match.params.UserID}`)
             .then(response => {
                 setempUser(response.data)
+                setAddLog({...addLog,UserID:response.data.UserID})
+                //setAddLog(response.data)
             })
             .catch(err => console.log(err))
     }
 
-    // const List
+    const listAppSystem = () => {
+        axios
+            .get(`${process.env.REACT_APP_API_AppSystem}/allapp`)
+            .then(response => {
+                console.log(response.data)
+                setListApp(response.data)
+            })
+            .catch(err => console.log(err))
+    }
 
 
 
     useEffect(() => {
         empSingleUser()
+        listAppSystem()
     }, [])
 
 
     //กำหนดค่าให้กับ state
-    const inputValue=name=>event=>{
+    const inputValue = name => event => {
         // console.log(name,"=",event.target.value)
         //เก็บข้อมูล state เป็นแบบ object
-        setempUser({...empUser,[name]:event.target.value});
-      }
+        setAddLog({ ...addLog, [name]: event.target.value });
+    }
 
     const checkedValue = (name) => (event) => {
-        setempUser({ ...empUser, [name]: event.target.checked });
+        setAddLog({...addLog, [name]: event.target.checked });
     };
 
 
@@ -50,12 +64,18 @@ export default (props) => {
         <Form className="col-7" onSubmit={submitForm}>
             <Form.Group className="mb-3">
                 <Form.Label>User ID :</Form.Label>
-                <Form.Control type="text" readOnly rows="3" value={UserID} />
+                <Form.Control type="text" rows="3" readOnly value={UserID}  />
             </Form.Group>
 
             <Form.Group className="mb-3">
                 <Form.Label>Application Name :</Form.Label>
-                <Form.Control type="text" rows="3" value={App_name} onChange={inputValue('App_name')} />
+                <Form.Select  onChange={inputValue('App_name')}>
+                    {listApp.map((listapp,index) => (
+                        <option key={index} value={listapp.app_name.toString()}  >{listapp.app_name}</option>
+                    ))}
+                </Form.Select>
+                
+                {/* <Form.Control type="text" rows="3" value={App_name} onChange={inputValue('App_name')} /> */}
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -77,12 +97,12 @@ export default (props) => {
 
             <Form.Group className="mb-3">
                 <Form.Label>Ticket ID :</Form.Label>
-                <Form.Control type="text" rows="3" value={TicketID}  onChange={inputValue('TicketID')} />
+                <Form.Control type="text" rows="3" value={TicketID} onChange={inputValue('TicketID')} />
             </Form.Group>
 
             <Form.Group className="mb-3">
                 <Form.Label>Note :</Form.Label>
-                <Form.Control as="textarea" rows="3" value={Note}  onChange={inputValue('Note')} />
+                <Form.Control as="textarea" rows="3" value={Note} onChange={inputValue('Note')} />
             </Form.Group>
 
             <React.Fragment>
@@ -104,6 +124,10 @@ export default (props) => {
             .then((res) => {
                 console.log(res)
                 Swal.fire('แจ้งเตือน', 'บันทึกข้อมูลเรียบร้อยแล้ว', 'success')
+                //setAddLog({ ...addLog, UserID, App_name, Access, App_status, TicketID, Note });
+
+
+
                 //return <Redirect to={Routes.NotFound.path} />
                 // const {App_status, TicketID, Note} = response.data
                 // setSingleLog({...singleLog,App_status, TicketID, Note})

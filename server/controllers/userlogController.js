@@ -6,10 +6,10 @@ exports.addlogs=(req,res)=>{
     switch(true){
         case !App_name:
             return res.status(400).json({error:"choose app/system"})
-            break;
+
         case !Access:
             return res.status(400).json({error:"choose access"})
-            break;
+
         }
 
 

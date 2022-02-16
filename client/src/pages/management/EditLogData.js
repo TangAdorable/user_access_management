@@ -47,14 +47,14 @@ export default (props) => {
     userSingleLog();
   }, []);
 
-  //กำหนดค่าให้กับ state
+  //กำหนดค่าให้กับ state / เขียน Function ซ้อนกัน
   const inputValue = (name) => (event) => {
     // console.log(name,"=",event.target.value)
-    //เก็บข้อมูล state เป็นแบบ object
+    //เก็บข้อมูล state เป็นแบบ object /...singleLog เป็นการ destructuring โครงสร้าง
     setSingleLog({ ...singleLog, [name]: event.target.value });
   };
   const checkedValue = (name) => (event) => {
-    setSingleLog({ ...singleLog, [name]: event.target.checked });
+    setSingleLog({...singleLog, [name]: event.target.checked});
   };
 
   const FormModifyLog = () => (

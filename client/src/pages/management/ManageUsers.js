@@ -14,6 +14,10 @@ export default () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
 
+/**
+ * It fetches all the employees from the API and sets the state of the component to the data that is
+ * fetched.
+ */
   const fetchData = () => {
     axios
       .get(`${process.env.REACT_APP_API_Employees}/allemp`)
@@ -23,10 +27,13 @@ export default () => {
       .catch(err => alert(err));
   }
 
+/* This is a React Hook that is used to fetch data from the API. It is used to fetch data from the API
+and set it to the state. */
   useEffect(() => {
     fetchData()
   }, [])
 
+/* This is the code that is used to paginate the table. */
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allemp.slice(indexOfFirstPost, indexOfLastPost);

@@ -7,9 +7,10 @@ const app_system = mongoose.Schema(
       require: true,
       unique: true,
     },
-    Access: [],
+    name_access: [],
   },
   { timestamps: true }
 );
 
 module.exports = mongoose.model("app_system", app_system);
+/* The above code is creating a schema for the app_system collection. */

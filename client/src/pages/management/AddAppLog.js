@@ -3,7 +3,6 @@ import axios from 'axios';
 import UserProfile from './UserProfile';
 import { Form, Button } from '@themesberg/react-bootstrap';
 import Swal from 'sweetalert2';
-import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 
 export default (props) => {
     //TODO:INITIAL CONST
@@ -80,7 +79,6 @@ export default (props) => {
                 });
                 setSelected(result.name_access);
                 //   console.log('Tat'+result.name_access)
-
                 //setFoods(result)
             }
         }
@@ -115,7 +113,7 @@ export default (props) => {
                             {listapp.app_name}
                         </option>
                     ))}
-                    {console.log('Tang Test ' + App_name)}
+                    {console.log('Tang Test 1 ' + App_name)}
                 </Form.Select>
             </Form.Group>
 
@@ -129,6 +127,7 @@ export default (props) => {
                             {list}
                         </option>
                     ))}
+                    {console.log('Tang Test 2 ' + Access)}
                 </Form.Select>
             </Form.Group>
 
@@ -169,27 +168,40 @@ export default (props) => {
         e.preventDefault(); //e.preventDefault() ถูกใช้เพื่อไม่ให้ browser reload หรือ refresh
         // console.table({title,content,author})
         //console.log("API URL = ", process.env.REACT_APP_API)
-        axios
-            .post(`${process.env.REACT_APP_API_Userlogs}/addlogs`, {
-                UserID,
-                App_name,
-                Access,
-                App_status,
-                TicketID,
-                Note,
-            })
-            .then((res) => {
-                console.log(res);
-                Swal.fire('แจ้งเตือน', 'บันทึกข้อมูลเรียบร้อยแล้ว', 'success');
-                //setAddLog({ ...addLog, UserID, App_name, Access, App_status, TicketID, Note });
 
-                //return <Redirect to={Routes.NotFound.path} />
-                // const {App_status, TicketID, Note} = response.data
-                // setSingleLog({...singleLog,App_status, TicketID, Note})
-            })
-            .catch((err) => {
-                Swal.fire('แจ้งเตือน', err.response.data.error, 'error');
-            });
+        if (!App_name || App_name === 'select option 1') {
+            //setAddLog({ ...addLog, App_name: null });
+            //console.log('Tang 55 66 77 88 99 ' + App_name)
+            Swal.fire('แจ้งเตือน', 'กรุณาเลือก Acclication Name', 'error');
+
+        } else if (!Access || Access === 'select option 2') {
+            //setAddLog({ ...addLog, Access: null });
+            //console.log('Tang 55 66 77 88 99 ' + Access)
+            Swal.fire('แจ้งเตือน', 'กรุณาเลือก Access', 'error');
+
+        } else {
+            axios
+                .post(`${process.env.REACT_APP_API_Userlogs}/addlogs`, {
+                    UserID,
+                    App_name,
+                    Access,
+                    App_status,
+                    TicketID,
+                    Note,
+                })
+                .then((res) => {
+                    console.log(res);
+                    Swal.fire('แจ้งเตือน', 'บันทึกข้อมูลเรียบร้อยแล้ว', 'success');
+                    //setAddLog({ ...addLog, UserID:'', App_name: '', Access: '', App_status: '', TicketID: '', Note: '' });
+
+                    //return <Redirect to={Routes.NotFound.path} />
+                    // const {App_status, TicketID, Note} = response.data
+                    // setSingleLog({...singleLog,App_status, TicketID, Note})
+                })
+                .catch((err) => {
+                    Swal.fire('แจ้งเตือน', err.response.data.error, 'error');
+                });
+        }
     };
 
     return (

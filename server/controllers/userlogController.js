@@ -4,12 +4,12 @@ exports.addlogs=(req,res)=>{
     let {UserID,App_name,Access,App_status,TicketID,Note}=req.body
 
     switch(true){
-        case !App_name:
-            return res.status(400).json({error:"choose app/system"})
-
-        case !Access:
-            return res.status(400).json({error:"choose access"})
-
+        case !App_name || App_name === 'select option 1':
+            return res.status(400).json({error:"เลือก Acclication Name"})
+            break;
+        case !Access || Access === 'select option 2':
+            return res.status(400).json({error:"เลือก Access"})
+            break;
         }
 
 

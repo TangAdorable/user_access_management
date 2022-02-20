@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, ButtonGroup, Row, Col, InputGroup, Form , Card, Table } from "@themesberg/react-bootstrap";
+import { Button, ButtonGroup, Row, Col, InputGroup, Form, Card, Table } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios"
@@ -14,10 +14,10 @@ export default () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
 
-/**
- * It fetches all the employees from the API and sets the state of the component to the data that is
- * fetched.
- */
+  /**
+   * It fetches all the employees from the API and sets the state of the component to the data that is
+   * fetched.
+   */
   const fetchData = () => {
     axios
       .get(`${process.env.REACT_APP_API_Employees}/allemp`)
@@ -27,13 +27,13 @@ export default () => {
       .catch(err => alert(err));
   }
 
-/* This is a React Hook that is used to fetch data from the API. It is used to fetch data from the API
-and set it to the state. */
+  /* This is a React Hook that is used to fetch data from the API. It is used to fetch data from the API
+  and set it to the state. */
   useEffect(() => {
     fetchData()
   }, [])
 
-/* This is the code that is used to paginate the table. */
+  /* This is the code that is used to paginate the table. */
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allemp.slice(indexOfFirstPost, indexOfLastPost);
@@ -49,9 +49,12 @@ and set it to the state. */
       <p className="mb-0">Your web user access management</p>
 
       <div className="btn-toolbar justify-content-end ">
-        <Button variant="primary" size="sm">
-          <FontAwesomeIcon icon={faPlus} className="me-2" /> Add New User
-        </Button>
+
+          <Button variant="primary" size="sm" as={Link} to={'/employees/create'}>
+            <FontAwesomeIcon icon={faPlus} className="me-2"
+            />
+            Add New User
+          </Button>
         <ButtonGroup className="ms-3">
           <Button variant="outline-info" size="sm">
             Share
@@ -101,7 +104,7 @@ and set it to the state. */
               {currentPosts.map((emp, index) => (
                 <tr key={index}>
                   <td >
-                    <Card.Link as={Link} to={`/employees/emp/${emp.UserID}`}  className="d-flex align-items-center">
+                    <Card.Link as={Link} to={`/employees/emp/${emp.UserID}`} className="d-flex align-items-center">
                       <div className="d-block">
                         <span className="fw-bold">{emp.UserID}</span>
                       </div>

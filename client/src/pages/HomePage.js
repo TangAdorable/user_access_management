@@ -9,6 +9,7 @@ import singleUserID from './management/singleUserID';
 import EditLogData from './management/EditLogData';
 import AddAppLog from './management/AddAppLog';
 import Presentation from './Presentation';
+import AddNewUser from './management/AddNewUser';
 import Upgrade from './Upgrade';
 import DashboardOverview from './dashboard/DashboardOverview';
 import Transactions from './Transactions';
@@ -135,6 +136,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.ManageUsers.path} component={ManageUsers} />
     <RouteWithSidebar exact path={Routes.singleUserID.path} component={singleUserID} />
     <RouteWithSidebar exact path={Routes.EditLogData.path} component={EditLogData} />
+    <RouteWithSidebar exact path={Routes.AddNewUser.path} component={AddNewUser} />
     <RouteWithSidebar exact path={Routes.AddAppLog.path} component={AddAppLog} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
 

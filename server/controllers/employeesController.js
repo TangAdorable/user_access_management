@@ -8,16 +8,22 @@ exports.create=(req,res)=>{
     switch(true){
         case !UserID:
             return res.status(400).json({error:"ระบุ UserID"})
+            break;
         case !FirstName:
             return res.status(400).json({error:"ระบุชื่อพนักงาน"})
+            break;
         case !LastName:
             return res.status(400).json({error:"ระบุนามสกุลพนักงาน"})
+            break;
         case !JobTitle:
             return res.status(400).json({error:"ระบุตำแหน่งของพนักงาน"})
+            break;
         case !Department:
             return res.status(400).json({error:"ระบุแผนกของพนักงาน"})
+            break;
         case !CreatorBy:
             return res.status(400).json({error:"ระบุชื่อผู้บันทึกข้อมูล"})
+            break;
     }
 
     employees.create({UserID,FirstName,LastName,JobTitle,Department,CreatorBy},(err,create)=>{

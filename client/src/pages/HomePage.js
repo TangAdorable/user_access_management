@@ -10,6 +10,7 @@ import EditLogData from './management/EditLogData';
 import AddAppLog from './management/AddAppLog';
 import Presentation from './Presentation';
 import AddNewUser from './management/AddNewUser';
+import EditUserProfile from './management/EditUserProfile';
 import Upgrade from './Upgrade';
 import DashboardOverview from './dashboard/DashboardOverview';
 import Transactions from './Transactions';
@@ -138,6 +139,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.EditLogData.path} component={EditLogData} />
     <RouteWithSidebar exact path={Routes.AddNewUser.path} component={AddNewUser} />
     <RouteWithSidebar exact path={Routes.AddAppLog.path} component={AddAppLog} />
+    <RouteWithSidebar exact path={Routes.EditUserProfile.path} component={EditUserProfile} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
 
     {/* components */}
@@ -167,6 +169,6 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DocsBuild.path} component={DocsBuild} />
     <RouteWithSidebar exact path={Routes.DocsChangelog.path} component={DocsChangelog} />
     
-    <Redirect to={Routes.NotFound.path} /> 
+    {/* <Redirect to={Routes.NotFound.path} />  */}
   </Switch>
 );

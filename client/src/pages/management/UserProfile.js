@@ -3,6 +3,8 @@ import axios from "axios"
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from "@themesberg/react-bootstrap";
+import { Link } from 'react-router-dom';
+import { Routes } from "../../routes";
 //import CustomPagination from "./PaginationManageUsers";
 
 const UserProfile = (props) => {
@@ -33,7 +35,7 @@ const UserProfile = (props) => {
                     <p className="fs-6">Job Title : {JobTitle}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Department : {Department}</p>
                 </div>
                 <div className="col text-end">
-                    <Button variant="primary" size="sm">
+                    <Button variant="primary" size="sm" as={Link} to={Routes.EditUserProfile.path}>
                         <FontAwesomeIcon icon={faUserEdit} className="me-2" /> Modify User
                     </Button>
                 </div>

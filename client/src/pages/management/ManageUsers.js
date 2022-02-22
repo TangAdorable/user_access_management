@@ -5,6 +5,7 @@ import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios"
 import CustomPagination from "./PaginationManageUsers";
 import { Link } from 'react-router-dom';
+import { Routes } from "../../routes";
 
 
 
@@ -50,7 +51,7 @@ export default () => {
 
       <div className="btn-toolbar justify-content-end ">
 
-          <Button variant="primary" size="sm" as={Link} to={'/employees/create'}>
+          <Button variant="primary" size="sm" as={Link} to={Routes.AddNewUser.path}>
             <FontAwesomeIcon icon={faPlus} className="me-2"
             />
             Add New User

@@ -13,7 +13,7 @@ export const Routes = {
     EditLogData:{path: "/userlogs/singlelog/:_id/:UserID"}, ///:_id
     AddAppLog:{path: "/userlogs/AddAppLog/:UserID"},
     AddNewUser:{path: "/employees/create"},
-    EditUserProfile:{path: "/employees/modifyUser"},
+    EditUserProfile:{path: "/employees/modifyUser/:UserID"},
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },

@@ -7,28 +7,28 @@ exports.create=(req,res)=>{
     // validate  / ตรวจสอบความถูกต้องของข้อมูล
     switch(true){
         case !UserID:
-            return res.status(400).json({error:"ระบุ UserID"})
+            return res.status(400).json({error:"ระบุ User ID"})
             break;
         case !FirstName:
-            return res.status(400).json({error:"ระบุชื่อพนักงาน"})
+            return res.status(400).json({error:"ระบุ First Name"})
             break;
         case !LastName:
-            return res.status(400).json({error:"ระบุนามสกุลพนักงาน"})
+            return res.status(400).json({error:"ระบุ Last Name"})
             break;
         case !JobTitle:
-            return res.status(400).json({error:"ระบุตำแหน่งของพนักงาน"})
+            return res.status(400).json({error:"ระบุ Job Title"})
             break;
         case !Department:
-            return res.status(400).json({error:"ระบุแผนกของพนักงาน"})
+            return res.status(400).json({error:"ระบุ Department"})
             break;
         case !CreatorBy:
-            return res.status(400).json({error:"ระบุชื่อผู้บันทึกข้อมูล"})
+            return res.status(400).json({error:"ระบุ CreatorBy"})
             break;
     }
 
     employees.create({UserID,FirstName,LastName,JobTitle,Department,CreatorBy},(err,create)=>{
         if(err){
-            res.status(400).json({error:"พบข้อมูล UserID นี้ในระบบ"})
+            res.status(400).json({error:"พบข้อมูล User ID นี้ในระบบ"})
         }
         res.json(create)
     })

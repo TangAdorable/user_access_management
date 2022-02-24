@@ -27,7 +27,7 @@ export default (props) => {
       .then((response) => {
         setempUser(response.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   };
 
   const userSingleLog = () => {

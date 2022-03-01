@@ -74,6 +74,7 @@ export default (props) => {
             if (App_name === 'select option 1') {
                 setSelected([]);
             } else {
+                //
                 const result = listApp.find((element) => {
                     return element.app_name === App_name;
                 });

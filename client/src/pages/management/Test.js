@@ -1,79 +1,66 @@
-import * as React from "react";
-  
-const App = () => {
-  /** "selected" here is state variable which will hold the
-   * value of currently selected dropdown.
-   */
-  const [selected, setSelected] = React.useState("");
-  
-  /** Function that will set different values to state variable
-   * based on which dropdown is selected
-   */
-  const changeSelectOptionHandler = (event) => {
-    setSelected(event.target.value);
-  };
-  
-  /** Different arrays for different dropdowns */
-  const algorithm = [
-    "Searching Algorithm",
-    "Sorting Algorithm",
-    "Graph Algorithm",
-  ];
-  const language = ["C++", "Java", "Python", "C#"];
-  const dataStructure = ["Arrays", "LinkedList", "Stack", "Queue"];
-  
-  /** Type variable to store different array for different dropdown */
-  let type = null;
-  
-  /** This will be used to create set of options that user will see */
-  let options = null;
-  
-  /** Setting Type variable according to dropdown */
-  if (selected === "Algorithm") {
-    type = algorithm;
-  } else if (selected === "Language") {
-    type = language;
-  } else if (selected === "Data Structure") {
-    type = dataStructure;
-  }
-  
-  /** If "Type" is null or undefined then options will be null,
-   * otherwise it will create a options iterable based on our array
-   */
-  if (type) {
-    options = type.map((el) => <option key={el}>{el}</option>);
-  }
-  return (
-    <div
-      style={{
-        padding: "16px",
-        margin: "16px",
-      }}
-    >
-      <form>
-        <div>
-          {/** Bind changeSelectOptionHandler to onChange method of select.
-           * This method will trigger every time different
-           * option is selected.
-           */}
-          <select onChange={changeSelectOptionHandler}>
-            <option>Choose...</option>
-            <option>Algorithm</option>
-            <option>Language</option>
-            <option>Data Structure</option>
-          </select>
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Card, Input } from 'semantic-ui-react'
+export default function Posts() {
+    const [APIData, setAPIData] = useState([])
+    const [filteredResults, setFilteredResults] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
+    
+    useEffect(() => {
+        axios.get(`https://jsonplaceholder.typicode.com/users`)
+            .then((response) => {
+                setAPIData(response.data);
+            })
+    }, [])
+
+    const searchItems = (searchValue) => {
+        setSearchInput(searchValue)
+        if (searchInput !== '') {
+            const filteredData = APIData.filter((item) => {
+                return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+            })
+            setFilteredResults(filteredData)
+        }
+        else{
+            setFilteredResults(APIData)
+        }
+    }
+
+    return (
+        <div style={{ padding: 20 }}>
+            <Input icon='search'
+                placeholder='Search...'
+                onChange={(e) => searchItems(e.target.value)}
+            />
+            <Card.Group itemsPerRow={3} style={{ marginTop: 20 }}>
+                {searchInput.length > 1 ? (
+                    filteredResults.map((item) => {
+                        return (
+                            <Card>
+                                <Card.Content>
+                                    <Card.Header>{item.name}</Card.Header>
+                                    <Card.Description>
+                                        {item.email}
+                                    </Card.Description>
+                                </Card.Content>
+                            </Card>
+                        )
+                    })
+                ) : (
+                    APIData.map((item) => {
+                        return (
+                            <Card>
+                                <Card.Content>
+                                    <Card.Header>{item.name}</Card.Header>
+                                    <Card.Description>
+                                        {item.email}
+                                    </Card.Description>
+                                </Card.Content>
+                            </Card>
+                        )
+                    })
+                )}
+            </Card.Group>
         </div>
-        <div>
-          <select>
-            {
-              /** This is where we have used our options variable */
-              options
-            }
-          </select>
-        </div>
-      </form>
-    </div>
-  );
-};
-  
-export default App;
+    )
+}

@@ -7,6 +7,7 @@ require("dotenv").config(); //ตั้งค่าระบบ
 const app_system = require("./route/app_system");
 const employees = require("./route/employees");
 const userlogs = require("./route/userlogs");
+const authRoute = require("./route/auth")
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use(morgan("dev"))
 app.use('/api/app_system',app_system)
 app.use('/api/employees',employees)
 app.use('/api/userlogs',userlogs)
-
+app.use('/api/auth',authRoute)
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`start server in port ${port}`));

@@ -6,14 +6,16 @@ import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket , faKey } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
-import { Link } from 'react-router-dom';
+
+import { Link , withRouter} from 'react-router-dom';
+import { getEmail , logout } from "../services/authorize";
 
 import { Routes } from "../routes";
 import ThemesbergLogo from "../assets/img/themesberg.svg";
 import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 
-export default (props = {}) => {
+export default withRouter((props) => {
   const location = useLocation();
   const { pathname } = location;
   const [show, setShow] = useState(false);
@@ -98,7 +100,22 @@ export default (props = {}) => {
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
               <NavItem title="Users List" link={Routes.ManageUsers.path} image={ReactHero} />
-              <NavItem title="Login" link={Routes.Signin.path} icon={faKey} />
+              
+              { // Login เข้าสู้ระบบแล้ว
+                !getEmail() && (
+                  <NavItem title="Login" link={Routes.Signin.path} icon={faKey} />
+                )
+              }
+
+              { // logout
+                getEmail() && (
+                  <a onClick={()=>logout(()=>props.history.push("/sign-in"))}>
+                  <NavItem title="Logout"  icon={faSignOutAlt}   />
+                  </a>
+                )
+              }             
+
+              
               <NavItem title="Overview" link={Routes.DashboardOverview.path} icon={faChartPie} />
               <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} />
               <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
@@ -160,4 +177,4 @@ export default (props = {}) => {
       </CSSTransition>
     </>
   );
-};
+});

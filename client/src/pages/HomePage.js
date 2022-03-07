@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Routes } from '../routes';
 
+import { getEmail } from '../services/authorize';
+import AdminRoute from '../AdminRoute'; //ไม่ได้ใช้ ใช้ getEmail แทน
+
 // pages
 import Users from './Users';
 import ManageUsers from './management/ManageUsers';
@@ -101,19 +104,23 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => (
-        <>
-          <Preloader show={loaded ? false : true} />
-          <Sidebar />
+      render={(props) =>
+        //ตรวจสอบการ login ระบบ /หาก login เรียบร้อยแล้วจะสามารถเข้า url api ต่าง ๆ ได้
+        //หากยังไม่ได้ login จะ redirect ไปที่หน้า /sign-in
+        getEmail() ? (
+          <div>
+            <Preloader show={loaded ? false : true} />
+            <Sidebar />
 
-          <main className="content">
-            <Navbar />
-            <Component {...props} />
-            <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
-          </main>
-        </>
-      )}
-    />
+            <main className="content">
+              <Navbar />
+              <Component {...props} />
+              <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
+            </main>
+          </div>
+        ) :
+          (<Redirect to={{ pathname: "/sign-in", state: { from: props.location } }} />)
+      } />
   );
 };
 
@@ -170,6 +177,6 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DocsBuild.path} component={DocsBuild} />
     <RouteWithSidebar exact path={Routes.DocsChangelog.path} component={DocsChangelog} />
     
-    {/* <Redirect to={Routes.NotFound.path} />  */}
+    <Redirect to={Routes.NotFound.path} /> 
   </Switch>
 );

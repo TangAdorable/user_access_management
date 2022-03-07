@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from '@themesberg/react-bootstrap';
 import Swal from "sweetalert2";
+import { getEmail } from '../../services/authorize';
 
 export default () => {
 
 
     const [addUser, setAddUser] = useState({
-        UserID: '', FirstName: '', LastName: '', JobTitle: '', Department: '', CreatorBy: ''
+        UserID: '', FirstName: '', LastName: '', JobTitle: '', Department: '', CreatorBy:getEmail()
     })
+
 
     const { UserID, FirstName, LastName, JobTitle, Department, CreatorBy } = addUser
 
@@ -51,13 +53,12 @@ export default () => {
 
             <Form.Group className="mb-3">
                 <Form.Label>Creator By :</Form.Label>
-                <Form.Control type="text" rows="3" value={CreatorBy} onChange={inputValue('CreatorBy')} />
+                <Form.Control type="text" rows="3" readOnly value={CreatorBy} />
             </Form.Group>
 
             <Button type="submit" variant="warning" className="m-1">
                 Submit
             </Button>
-
         </Form>
     )
 

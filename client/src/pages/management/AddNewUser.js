@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from '@themesberg/react-bootstrap';
 import Swal from "sweetalert2";
-import { getEmail } from '../../services/authorize';
+import { getEmail,getToken } from '../../services/authorize';
 
 export default () => {
 
@@ -70,6 +70,9 @@ export default () => {
         axios
             .post(`${process.env.REACT_APP_API_Employees}/create`, {
                 UserID, FirstName, LastName, JobTitle, Department, CreatorBy
+            },
+            {
+                headers:{authorization:`Bearer ${getToken()}`}
             })
             .then((res) => {
                 console.log(res)

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button } from '@themesberg/react-bootstrap';
 import Swal from "sweetalert2";
+import { getToken } from '../../services/authorize';
 
 export default (props) => {
 
@@ -14,7 +15,10 @@ export default (props) => {
 
     const empsingleUser = () =>{
         axios
-        .get(`${process.env.REACT_APP_API_Employees}/emp/${props.match.params.UserID}`)
+        .get(`${process.env.REACT_APP_API_Employees}/emp/${props.match.params.UserID}`,
+        {
+            headers:{authorization:`Bearer ${getToken()}`}
+        })
         .then((response) => {
             setEmpUser(response.data);
         })
@@ -81,6 +85,8 @@ export default (props) => {
         axios
             .put(`${process.env.REACT_APP_API_Employees}/emp/${props.match.params.UserID}`, {
                 FirstName, LastName, JobTitle, Department
+            },{
+                headers:{authorization:`Bearer ${getToken()}`}
             })
             .then((res) => {
                 console.log(res)

@@ -7,6 +7,7 @@ import UserProfile from "./UserProfile"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
+import { getToken } from "../../services/authorize";
 
 export default (props) => {
     const [empUser, setempUser] = useState('')
@@ -24,7 +25,10 @@ export default (props) => {
 
     const empSingleUser = () => {
         axios
-            .get(`${process.env.REACT_APP_API_Employees}/emp/${props.match.params.UserID}`)
+            .get(`${process.env.REACT_APP_API_Employees}/emp/${props.match.params.UserID}`,
+            {
+                headers:{authorization:`Bearer ${getToken()}`}
+            })
             .then(response => {
                 setempUser(response.data)
             })
@@ -33,7 +37,10 @@ export default (props) => {
 
     const logEmpSingleUser = () => {
         axios
-            .get(`${process.env.REACT_APP_API_Userlogs}/userlog/${props.match.params.UserID}`)
+            .get(`${process.env.REACT_APP_API_Userlogs}/userlog/${props.match.params.UserID}`,
+            {
+                headers:{authorization:`Bearer ${getToken()}`}
+            })
             .then(response => {
                 setloguser(response.data)
                 //console.log(response.data)

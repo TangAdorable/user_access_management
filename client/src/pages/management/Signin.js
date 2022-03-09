@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import { authenticate } from "../../services/authorize";
 import { withRouter } from "react-router-dom";
 
-import { getEmail } from "../../services/authorize";
+import { getEmail , getToken } from "../../services/authorize";
 
 export default withRouter ((props) => {
 

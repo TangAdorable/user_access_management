@@ -7,6 +7,7 @@ import CustomPagination from "./PaginationManageUsers";
 import { Link } from 'react-router-dom';
 import { Routes } from "../../routes";
 import { CSVLink } from "react-csv";
+import { getToken } from "../../services/authorize";
 
 
 
@@ -25,7 +26,10 @@ export default () => {
    */
   const fetchData = () => {
     axios
-      .get(`${process.env.REACT_APP_API_Employees}/allemp`)
+      .get(`${process.env.REACT_APP_API_Employees}/allemp`,
+      {
+        headers:{authorization:`Bearer ${getToken()}`}
+      })
       .then(Response => {
         setAllemp(Response.data)
       })

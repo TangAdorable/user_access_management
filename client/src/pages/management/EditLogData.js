@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserProfile from './UserProfile';
 import { Form, Button } from '@themesberg/react-bootstrap';
 import Swal from "sweetalert2";
+import { getToken } from '../../services/authorize';
 
 export default (props) => {
   const [empUser, setempUser] = useState('');
@@ -23,7 +24,10 @@ export default (props) => {
 
   const empSingleUser = () => {
     axios
-      .get(`${process.env.REACT_APP_API_Employees}/emp/${props.match.params.UserID}`)
+      .get(`${process.env.REACT_APP_API_Employees}/emp/${props.match.params.UserID}`,
+      {
+        headers:{authorization:`Bearer ${getToken()}`}
+      })
       .then((response) => {
         setempUser(response.data);
       })
@@ -32,7 +36,10 @@ export default (props) => {
 
   const userSingleLog = () => {
     axios
-      .get(`${process.env.REACT_APP_API_Userlogs}/singlelog/${props.match.params._id}`)
+      .get(`${process.env.REACT_APP_API_Userlogs}/singlelog/${props.match.params._id}`,
+      {
+        headers:{authorization:`Bearer ${getToken()}`}
+      })
       .then((response) => {
         const { UserID, App_name, Access, App_status, TicketID, Note } = response.data;
         setSingleLog({ ...singleLog, UserID, App_name, Access, App_status, TicketID, Note });
@@ -115,6 +122,9 @@ export default (props) => {
         App_status,
         TicketID,
         Note,
+      },
+      {
+        headers:{authorization:`Bearer ${getToken()}`}
       })
       .then((res) => {
         console.log(res)

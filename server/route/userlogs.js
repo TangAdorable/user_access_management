@@ -5,7 +5,7 @@ const {requireLogin} = require("../controllers/authController")
 
 router
 .post('/addlogs',requireLogin,userlogs.addlogs)
-router.get('/alllogs',requireLogin,userlogs.alllogs)
+.get('/alllogs',requireLogin,userlogs.alllogs)
 .get('/userlog/:UserID',requireLogin,userlogs.userlog)
 .get('/singlelog/:_id',requireLogin,userlogs.singlelog)
 .put('/updatelog/:_id',requireLogin,userlogs.updatelog)

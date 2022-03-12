@@ -9,7 +9,7 @@ export default () => {
 
 
     const [addApp, setAddApp] = useState({
-        app_name: '', name_access: []
+        app_name: '', name_access: ''
     })
 
     const { app_name, name_access } = addApp
@@ -37,7 +37,7 @@ export default () => {
                 <Form.Control type="text" rows="3" value={app_name} onChange={inputValue('app_name')} />
             </Form.Group>
             <Form.Group className="mb-3">
-                <Form.Label>Function / Access / Menu :</Form.Label>
+                <Form.Label>Add Function / Access / Menu :</Form.Label>
                 <React.Fragment>
                     <Badge className="me-1 text-info">Note : if more than one example : function1,function2,function3</Badge>
                 </React.Fragment>
@@ -53,7 +53,12 @@ export default () => {
     const submitForm = (e) => {
         e.preventDefault(); //e.preventDefault() ถูกใช้เพื่อไม่ให้ browser reload หรือ refresh
 
-        axios
+        if (!app_name){
+            Swal.fire('แจ้งเตือน', 'กรุณาระบุ Application', 'error');
+        } else if(!name_access){
+            Swal.fire('แจ้งเตือน', 'กรุณา Add Function / Access / Menu', 'error');
+        } else {
+            axios
             .post(`${process.env.REACT_APP_API_AppSystem}/create`, {
                 app_name, name_access
             },
@@ -69,6 +74,9 @@ export default () => {
                 alert(err.response.data.error)
 
             });
+
+        }
+
     };
 
     return (

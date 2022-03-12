@@ -5,8 +5,8 @@ const {requireLogin} = require("../controllers/authController")
 
 router
 .post('/create',app_system.create)
-.get('/allapp',requireLogin,app_system.allapp)
-
+.get('/allapp',app_system.allapp)
+.put('/updateSingleApp/:app_name',app_system.updateSingleApp)
 
 module.exports=router
 

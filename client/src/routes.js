@@ -16,6 +16,7 @@ export const Routes = {
     EditUserProfile:{path: "/employees/modifyUser/:UserID"},
     Signin: { path: "/sign-in" },
     AddApplication : {path: "/addApplication"},
+    AddAccessApp :{ path: "/addAccessApp"},
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },

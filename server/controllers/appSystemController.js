@@ -25,3 +25,14 @@ exports.create=(req,res)=>{
         res.json(create)
     })
 }
+
+
+exports.updateSingleApp=(req,res)=>{
+    const {app_name} = req.params
+    const {name_access} = req.body
+
+    app_system.findOneAndUpdate({app_name},{name_access},{new:true})
+    .exec((err,update)=>{
+        res.json(update)
+    })
+}

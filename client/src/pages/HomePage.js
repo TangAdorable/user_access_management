@@ -12,6 +12,7 @@ import singleUserID from './management/singleUserID';
 import EditLogData from './management/EditLogData';
 import AddAppLog from './management/AddAppLog';
 import AddApplication from './management/AddApplication';
+import AddAccessApp from './management/AddAccessApp';
 import Presentation from './Presentation';
 import AddNewUser from './management/AddNewUser';
 import EditUserProfile from './management/EditUserProfile';
@@ -149,6 +150,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.AddNewUser.path} component={AddNewUser} />
     <RouteWithSidebar exact path={Routes.AddAppLog.path} component={AddAppLog} />
     <RouteWithSidebar exact path={Routes.AddApplication.path} component={AddApplication} />
+    <RouteWithSidebar exact path={Routes.AddAccessApp.path} component={AddAccessApp} />
     <RouteWithSidebar exact path={Routes.EditUserProfile.path} component={EditUserProfile} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
 

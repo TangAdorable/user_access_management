@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Form, Button } from '@themesberg/react-bootstrap';
 import { Badge } from '@themesberg/react-bootstrap';
@@ -10,32 +10,30 @@ export default () => {
 
     const [allApp, setAllApp] = useState([])
     const [showAccess, setShowAccess] = useState([]);
-    let [addApp, setAddApp] = useState({
-        app_name: '', name_access: []
-    })
-
-   let{ app_name, name_access } = addApp
+    const [addApp, setAddApp] = useState({ name_access: [] })
+    let { name_access } = addApp
+    const [change, setChange] = useState([])
 
 
     const listAppSystem = () => {
         axios
             .get(`${process.env.REACT_APP_API_AppSystem}/allapp`,
-            {
-                headers:{authorization:`Bearer ${getToken()}`}
-            })
+                {
+                    headers: { authorization: `Bearer ${getToken()}` }
+                })
             .then((response) => {
                 console.log(response.data);
                 setAllApp(response.data);
             })
             .catch((err) => console.log(err));
     };
-    
-      /* This is a React Hook that is used to fetch data from the API. It is used to fetch data from the API
-      and set it to the state. */
-      useEffect(() => {
+
+    /* This is a React Hook that is used to fetch data from the API. It is used to fetch data from the API
+    and set it to the state. */
+    useEffect(() => {
         listAppSystem()
-      }, [])
-    
+    }, [])
+
 
 
     //กำหนดค่าให้กับ state
@@ -43,33 +41,34 @@ export default () => {
         // console.log(name,"=",event.target.value)
         //เก็บข้อมูล state เป็นแบบ object
 
-        if (name==="app_name"){
+        if (name === "app_name") {
             const app_name = event.target.value;
             if (app_name === 'select application / system') {
                 setShowAccess([]);
             } else {
                 const result = allApp.find((element) => {
                     return element.app_name === app_name;
-                    
+
                 });
                 console.log(result.app_name) //แสดง app name
                 addApp.app_name = result.app_name //TODO: test
                 setShowAccess(result.name_access);
-                
+
             }
-        }else{ // (name === "name_access") 
+        } else { // (name === "name_access") 
             const name_access = event.target.value;
             const usingSplit = name_access.split(',');
-            var data_concat =  showAccess.concat(usingSplit);
+            const data_concat = showAccess.concat(usingSplit);
             //console.log(data_concat)
 
             //TODO: กลับมาดู
-                 
+            setChange(data_concat)
             setAddApp({ ...addApp, [name]: usingSplit })
-            addApp.name_access=data_concat
-            console.log('Tang Test ',data_concat)
+
+            console.log('Tang Test 1 ', data_concat)
+            console.log('Tang Test 2', change)
+
         }
-        
     }
 
 
@@ -89,7 +88,7 @@ export default () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-               
+
                 <React.Fragment>
                     <Badge className="me-1 text-info">Original Access in Application / System :</Badge>
                 </React.Fragment>
@@ -114,15 +113,16 @@ export default () => {
     const submitForm = (e) => {
         e.preventDefault(); //e.preventDefault() ถูกใช้เพื่อไม่ให้ browser reload หรือ refresh
 
-        let name_access=addApp.name_access
+        //เปลี่ยนแปลงค่าในตัวแปร name_access และส่งข้อมูล
+        name_access = change
 
         axios
             .put(`${process.env.REACT_APP_API_AppSystem}/updateSingleApp/${addApp.app_name}`, {
                 name_access
             },
-            {
-                headers:{authorization:`Bearer ${getToken()}`}
-            })
+                {
+                    headers: { authorization: `Bearer ${getToken()}` }
+                })
             .then((res) => {
                 console.log(res)
                 Swal.fire('แจ้งเตือน', 'Add new user success', 'success')

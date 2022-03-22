@@ -6,39 +6,19 @@ import { getEmail } from '../services/authorize';
 import AdminRoute from '../AdminRoute'; //ไม่ได้ใช้ ใช้ getEmail แทน
 
 // pages
-import Users from './Users';
+
 import ManageUsers from './management/ManageUsers';
 import singleUserID from './management/singleUserID';
 import EditLogData from './management/EditLogData';
 import AddAppLog from './management/AddAppLog';
 import AddApplication from './management/AddApplication';
 import AddAccessApp from './management/AddAccessApp';
-import Presentation from './Presentation';
 import AddNewUser from './management/AddNewUser';
 import EditUserProfile from './management/EditUserProfile';
 import Signin from './management/Signin';
-import Upgrade from './Upgrade';
-import DashboardOverview from './dashboard/DashboardOverview';
-import Transactions from './Transactions';
 import AppSystem from './admin/AppSystem';
-import Settings from './Settings';
-import BootstrapTables from './tables/BootstrapTables';
-// import Signin from './examples/Signin';
-import Signup from './examples/Signup';
-import ForgotPassword from './examples/ForgotPassword';
-import ResetPassword from './examples/ResetPassword';
-import Lock from './examples/Lock';
 import NotFoundPage from './examples/NotFound';
-import ServerError from './examples/ServerError';
 
-// documentation pages
-import DocsOverview from './documentation/DocsOverview';
-import DocsDownload from './documentation/DocsDownload';
-import DocsQuickStart from './documentation/DocsQuickStart';
-import DocsLicense from './documentation/DocsLicense';
-import DocsFolderStructure from './documentation/DocsFolderStructure';
-import DocsBuild from './documentation/DocsBuild';
-import DocsChangelog from './documentation/DocsChangelog';
 
 // components
 import Sidebar from '../components/Sidebar';
@@ -46,22 +26,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Preloader from '../components/Preloader';
 
-import Accordion from './components/Accordion';
-import Alerts from './components/Alerts';
-import Badges from './components/Badges';
-import Breadcrumbs from './components/Breadcrumbs';
-import Buttons from './components/Buttons';
-import Forms from './components/Forms';
-import Modals from './components/Modals';
-import Navs from './components/Navs';
-import Navbars from './components/Navbars';
-import Pagination from './components/Pagination';
-import Popovers from './components/Popovers';
-import Progress from './components/Progress';
-import Tables from './components/Tables';
-import Tabs from './components/Tabs';
-import Tooltips from './components/Tooltips';
-import Toasts from './components/Toasts';
+
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -128,22 +93,12 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
 
 export default () => (
   <Switch>
-    <RouteWithLoader exact path={Routes.Presentation.path} component={Presentation} />
     <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
-    <RouteWithLoader exact path={Routes.Signup.path} component={Signup} />
-    <RouteWithLoader exact path={Routes.ForgotPassword.path} component={ForgotPassword} />
-    <RouteWithLoader exact path={Routes.ResetPassword.path} component={ResetPassword} />
-    <RouteWithLoader exact path={Routes.Lock.path} component={Lock} />
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
-    <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
+ 
 
     {/* pages */}
-    <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
-    <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} />
-    <RouteWithSidebar exact path={Routes.Transactions.path} component={Transactions} />
     <RouteWithSidebar exact path={Routes.AppSystem.path} component={AppSystem} />
-    <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
-    <RouteWithSidebar exact path={Routes.Users.path} component={Users} />
     <RouteWithSidebar exact path={Routes.ManageUsers.path} component={ManageUsers} />
     <RouteWithSidebar exact path={Routes.singleUserID.path} component={singleUserID} />
     <RouteWithSidebar exact path={Routes.EditLogData.path} component={EditLogData} />
@@ -152,35 +107,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.AddApplication.path} component={AddApplication} />
     <RouteWithSidebar exact path={Routes.AddAccessApp.path} component={AddAccessApp} />
     <RouteWithSidebar exact path={Routes.EditUserProfile.path} component={EditUserProfile} />
-    <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
 
-    {/* components */}
-    <RouteWithSidebar exact path={Routes.Accordions.path} component={Accordion} />
-    <RouteWithSidebar exact path={Routes.Alerts.path} component={Alerts} />
-    <RouteWithSidebar exact path={Routes.Badges.path} component={Badges} />
-    <RouteWithSidebar exact path={Routes.Breadcrumbs.path} component={Breadcrumbs} />
-    <RouteWithSidebar exact path={Routes.Buttons.path} component={Buttons} />
-    <RouteWithSidebar exact path={Routes.Forms.path} component={Forms} />
-    <RouteWithSidebar exact path={Routes.Modals.path} component={Modals} />
-    <RouteWithSidebar exact path={Routes.Navs.path} component={Navs} />
-    <RouteWithSidebar exact path={Routes.Navbars.path} component={Navbars} />
-    <RouteWithSidebar exact path={Routes.Pagination.path} component={Pagination} />
-    <RouteWithSidebar exact path={Routes.Popovers.path} component={Popovers} />
-    <RouteWithSidebar exact path={Routes.Progress.path} component={Progress} />
-    <RouteWithSidebar exact path={Routes.Tables.path} component={Tables} />
-    <RouteWithSidebar exact path={Routes.Tabs.path} component={Tabs} />
-    <RouteWithSidebar exact path={Routes.Tooltips.path} component={Tooltips} />
-    <RouteWithSidebar exact path={Routes.Toasts.path} component={Toasts} />
-
-    {/* documentation */}
-    <RouteWithSidebar exact path={Routes.DocsOverview.path} component={DocsOverview} />
-    <RouteWithSidebar exact path={Routes.DocsDownload.path} component={DocsDownload} />
-    <RouteWithSidebar exact path={Routes.DocsQuickStart.path} component={DocsQuickStart} />
-    <RouteWithSidebar exact path={Routes.DocsLicense.path} component={DocsLicense} />
-    <RouteWithSidebar exact path={Routes.DocsFolderStructure.path} component={DocsFolderStructure} />
-    <RouteWithSidebar exact path={Routes.DocsBuild.path} component={DocsBuild} />
-    <RouteWithSidebar exact path={Routes.DocsChangelog.path} component={DocsChangelog} />
-    
     <Redirect to={Routes.NotFound.path} /> 
   </Switch>
 );

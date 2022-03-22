@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChalkboardTeacher,faCog, faSignOutAlt, faTimes, faUser , faPlus ,faUserPlus} from "@fortawesome/free-solid-svg-icons";
-import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
+import { Nav, Badge, Image, Button, Accordion, Navbar } from '@themesberg/react-bootstrap';
 
 import { Link , withRouter} from 'react-router-dom';
 import { getEmail , logout } from "../services/authorize";
@@ -71,7 +71,7 @@ export default withRouter((props) => {
   return (
     <>
       <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none">
-        <Navbar.Brand className="me-lg-5" as={Link} to={Routes.DashboardOverview.path}>
+        <Navbar.Brand className="me-lg-5" as={Link} to={Routes.ManageUsers.path}>
           <Image src={ReactHero} className="navbar-brand-light" />
         </Navbar.Brand>
         <Navbar.Toggle as={Button} aria-controls="main-navbar" onClick={onCollapse}>

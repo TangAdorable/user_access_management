@@ -28,9 +28,10 @@ const UserProfile = (props) => {
         <div>
             <div className="row justify-content-between ">
             {/* {JSON.stringify(props)} */}
-                <div className="col ">
+                <div className="col-8">
                     <h5>UserID : {UserID}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{FirstName} {LastName}</h5>
-                    <p className="fs-6">Job Title : {JobTitle}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Department : {Department}</p>
+                    <p className="fs-6"><span className="fw-bolder">Job Title : </span>{JobTitle}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span className="fw-bolder">Department : </span>{Department}</p>
                 </div>
                 <div className="col text-end">
                     <Button variant="primary" size="sm" as={Link} to={`/employees/modifyUser/${UserID}`}>
